@@ -7,13 +7,7 @@ const BlogPostModel = (sequelize, DataTypes) => {
     },
     title: DataTypes.STRING,
     content: DataTypes.STRING,
-    userId: {
-      type: DataTypes.INTEGER,
-      references: {
-        model: 'users',
-        key: 'id'
-      }
-    },
+    userId: DataTypes.INTEGER,
     published: DataTypes.DATE,
     updated: DataTypes.DATE,
   },
