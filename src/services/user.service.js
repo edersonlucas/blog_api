@@ -35,6 +35,15 @@ const insert = async (dataNewUser) => {
   }
 };
 
+const getAll = async () => {
+  const users = await User.findAll({
+    attributes: ['id', 'displayName', 'email', 'image'],
+    raw: true,
+  });
+  return users;
+};
+
 module.exports = {
   insert,
+  getAll,
 };

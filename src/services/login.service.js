@@ -2,17 +2,12 @@ const { User } = require('../models');
 const auth = require('../util/auth');
 
 const userExist = async (email, password) => {
-  const user = await User.findOne({
+  const payload = await User.findOne({
     where: { email, password },
+    attributes: ['id', 'email', 'displayName', 'image'],
     raw: true,
   });
-  if (user) {
-    const payload = {
-      id: user.id,
-      email: user.email,
-      displayName: user.displayName,
-      image: user.image,
-    };
+  if (payload) {
     return payload;
   }
 };
