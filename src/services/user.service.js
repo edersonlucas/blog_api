@@ -43,7 +43,17 @@ const getAll = async () => {
   return users;
 };
 
+const getById = async (id) => {
+  const user = await User.findOne({
+    where: { id },
+    attributes: ['id', 'displayName', 'email', 'image'],
+    raw: true,
+  });
+  if (user) return user;
+};
+
 module.exports = {
   insert,
   getAll,
+  getById,
 };
