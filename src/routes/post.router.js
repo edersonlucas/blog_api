@@ -6,5 +6,6 @@ const newPostValidationMiddleware = require('../middlewares/newPostValidation.mi
 const authMiddleware = require('../middlewares/auth.middleware');
 
 Router.post('/', authMiddleware, newPostValidationMiddleware, postController.create);
+Router.get('/', authMiddleware, postController.getAll);
 
 module.exports = Router;
