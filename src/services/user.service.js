@@ -49,7 +49,7 @@ const getById = async (id) => {
     attributes: ['id', 'displayName', 'email', 'image'],
     raw: true,
   });
-  if (user) return user;
+  return user;
 };
 
 module.exports = {
