@@ -6,6 +6,7 @@ const newPostValidationMiddleware = require('../middlewares/newPostValidation.mi
 const updatePostValidationMiddleware = require('../middlewares/updatePostValidation.middleware');
 const authMiddleware = require('../middlewares/auth.middleware');
 
+Router.get('/search', authMiddleware, postController.getSearch);
 Router.post('/', authMiddleware, newPostValidationMiddleware, postController.create);
 Router.get('/', authMiddleware, postController.getAll);
 Router.get('/:id', authMiddleware, postController.getById);

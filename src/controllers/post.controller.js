@@ -36,10 +36,17 @@ const removeById = async (req, res) => {
   return res.status(204).json();
 };
 
+const getSearch = async (req, res) => {
+  const { q } = req.query;
+  const posts = await postService.getSearch(q);
+  res.status(200).json(posts);
+};
+
 module.exports = {
   create,
   getAll,
   getById,
   updateById,
   removeById,
+  getSearch,
 };
