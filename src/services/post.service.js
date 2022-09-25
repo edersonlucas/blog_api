@@ -51,11 +51,29 @@ const getById = async (id) => {
       { model: Category, as: 'categories' },
     ],
   });
-  return post;
+  if (post) return { type: null, message: post };
+  return { type: 'NOT_FOUND', message: 'Post does not exist' };
+};
+
+const updateById = async (postId, userId, { title, content }) => {
+  const findPost = await BlogPost.findOne({
+    where: { id: postId, title, content, userId },
+    raw: true,
+  });
+  if (findPost) return { type: 'CONFLICT', message: 'No change detected' };
+  const [postHasBeenUpdated] = await BlogPost.update({ title, content, updated: new Date() }, {
+    where: { id: postId, userId },
+  });
+  if (postHasBeenUpdated) {
+    const updatedPost = await getById(postId);
+    return updatedPost;
+  }
+  return { type: 'UNAUTHORIZED', message: 'Unauthorized user' };
 };
 
 module.exports = {
   insert,
   getAll,
   getById,
+  updateById,
 };

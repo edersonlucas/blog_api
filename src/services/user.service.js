@@ -49,7 +49,8 @@ const getById = async (id) => {
     attributes: ['id', 'displayName', 'email', 'image'],
     raw: true,
   });
-  return user;
+  if (user) return { type: null, message: user };
+  return { type: 'NOT_FOUND', message: 'User does not exist' };
 };
 
 module.exports = {

@@ -15,13 +15,22 @@ const getAll = async (_req, res) => {
 
 const getById = async (req, res) => {
   const { id } = req.params;
-  const post = await postService.getById(id);
-  if (post) return res.status(200).json(post);
-  return res.status(404).json({ message: 'Post does not exist' });
+  const { type, message } = await postService.getById(id);
+  if (type) return res.status(errorMap(type)).json({ message });
+  return res.status(200).json(message);
+};
+
+const updateById = async (req, res) => {
+  const { id } = req.params;
+  const userId = req.user.id;
+  const { type, message } = await postService.updateById(id, userId, req.body);
+  if (type) return res.status(errorMap(type)).json({ message });
+  return res.status(200).json(message);
 };
 
 module.exports = {
   create,
   getAll,
   getById,
+  updateById,
 };
