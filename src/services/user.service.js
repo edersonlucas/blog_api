@@ -53,8 +53,15 @@ const getById = async (id) => {
   return { type: 'NOT_FOUND', message: 'User does not exist' };
 };
 
+const deleteMyUser = async (id) => {
+  await User.destroy({
+    where: { id },
+  }); 
+};
+
 module.exports = {
   insert,
   getAll,
   getById,
+  deleteMyUser,
 };
