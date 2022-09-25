@@ -71,9 +71,20 @@ const updateById = async (postId, userId, { title, content }) => {
   return { type: 'UNAUTHORIZED', message: 'Unauthorized user' };
 };
 
+const removeById = async (postId, userId) => {
+  const { type } = await getById(postId); // verifica se o post existe
+  if (type) return { type: 'NOT_FOUND', message: 'Post does not exist' };
+  const postHasBeenRemoved = await BlogPost.destroy({
+    where: { id: postId, userId },
+  });
+  if (postHasBeenRemoved) return { type: null, message: '' };
+  return { type: 'UNAUTHORIZED', message: 'Unauthorized user' };
+};
+
 module.exports = {
   insert,
   getAll,
   getById,
   updateById,
+  removeById,
 };

@@ -10,5 +10,6 @@ Router.post('/', authMiddleware, newPostValidationMiddleware, postController.cre
 Router.get('/', authMiddleware, postController.getAll);
 Router.get('/:id', authMiddleware, postController.getById);
 Router.put('/:id', authMiddleware, updatePostValidationMiddleware, postController.updateById);
+Router.delete('/:id', authMiddleware, postController.removeById);
 
 module.exports = Router;
