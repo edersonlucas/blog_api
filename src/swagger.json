@@ -13,5 +13,81 @@
       "url": "http://localhost:3000",
       "description": "API"
     }
-  ]
+  ],
+  "paths": {
+    "/user": {
+      "post": {
+        "summary": "Cadastrar Usuário",
+        "description": "Essa rota será a responsável por cadastrar um novo usuário",
+        "tags": ["Usuário"],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "displayName": {
+                    "type": "string"
+                  },
+                  "email": {
+                    "type": "string"
+                  },
+                  "password": {
+                    "type": "string"
+                  },
+                  "image": {
+                    "type": "string"
+                  }
+                }
+              },
+              "example": {
+                "displayName": "Ederson Lucas",
+                "email": "edersonlucas@outlook.com.br",
+                "password": "ederson1234",
+                "image": "https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50?s=200"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "token": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "example": {
+                  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiZW1haWwiOiJlZGVyc29ubHVjYXNAb3V0bG9vay5jb20uYnIiLCJkaXNwbGF5TmFtZSI6IkVkZXJzb24gTHVjYXMiLCJpbWFnZSI6Imh0dHBzOi8vd3d3LmdyYXZhdGFyLmNvbS9hdmF0YXIvMjA1ZTQ2MGI0NzllMmU1YjQ4YWVjMDc3MTBjMDhkNTA_cz0yMDAiLCJpYXQiOjE2NjQzMjc2NzZ9.clpJL203Y_F2Ovf7XXgkMgxv0GBsp8xoAHRxKoec-lQ"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Conflict",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "example": {
+                  "message": "User already registered"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
 }
