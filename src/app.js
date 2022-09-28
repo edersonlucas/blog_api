@@ -1,5 +1,6 @@
 const express = require('express');
 const swaggerUi = require('swagger-ui-express');
+const cors = require('cors');
 const swaggerDocs = require('./swagger.json');
 // ...
 
@@ -10,6 +11,7 @@ const postRouter = require('./routes/post.router');
 const errorMiddleware = require('./middlewares/error.middleware');
 
 const app = express();
+app.use(cors());
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 app.use(express.json());
 app.use('/login', loginRouter);
