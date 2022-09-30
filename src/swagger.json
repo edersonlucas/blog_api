@@ -87,6 +87,74 @@
             }
           }
         }
+      },
+      "get": {
+        "summary": "Listar Usuários",
+        "description": "Essa rota será a responsável por listar todos os usuários",
+        "tags": ["Usuário"],
+        "security": [{ "bearerAuth": []}],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "integer"
+                      },
+                      "displayName": {
+                        "type": "string"
+                      },
+                      "email": {
+                        "type": "string"
+                      },
+                      "image": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                },
+                "example": [
+                  {
+                    "id": 1,
+                    "displayName": "Ederson Lucas",
+                    "email": "edersonlucas@outlook.com.br",
+                    "image": "https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50?s=200"
+                  }
+                ]
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": "string"
+                  }
+                },
+                "example": {
+                  "message": "Expired or invalid token"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
       }
     }
   }
