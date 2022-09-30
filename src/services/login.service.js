@@ -7,9 +7,7 @@ const userExist = async (email, password) => {
     attributes: ['id', 'email', 'displayName', 'image'],
     raw: true,
   });
-  if (payload) {
-    return payload;
-  }
+  return payload;
 };
 
 const authentication = async ({ email, password }) => {
