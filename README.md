@@ -18,6 +18,7 @@ Esse projeto foi desenvolvido com as seguintes tecnologias:
 - JWT
 - Swagger-UI
 - Mysql
+- Docker
 
 ## 💻 Projeto
 
@@ -27,7 +28,7 @@ API para servir um blog desenvolvido em NodeJS e Express utilizando um ORM o seq
 
     # Clonar este repositório
         $ git clone https://github.com/edersonlucas/blog_api
-
+    
     # Entre no repositório
         $ cd blog_api
 
@@ -35,7 +36,7 @@ API para servir um blog desenvolvido em NodeJS e Express utilizando um ORM o seq
 
     # Iniciando o container
         $ docker-compose up -d
-
+    
     # Acesse
         http://localhost:3000/api-docs        
 
@@ -43,7 +44,7 @@ API para servir um blog desenvolvido em NodeJS e Express utilizando um ORM o seq
 
     # Instalando as dependencias
         $ npm install
-
+    
     # Rodando a aplicação
         $ npm start
         
